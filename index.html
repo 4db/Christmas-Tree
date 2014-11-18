@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Christmas Tree</title>
+  <style type="text/css">
+    .tree {
+      position: relative;
+      margin: 50px;
+    }
+    .branch {
+      width: 0;
+      height: 0;
+      border-bottom: 33.33335px solid #c9de96;
+      margin: 0 auto;
+      position: relative;
+    }
+
+  </style>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+</head>
+<body onload="">
+<div id='tree' class="tree">
+</div>
+</body>
+
+  <script type="text/javascript">
+
+    var tree = {
+      treeLength:35,
+      top:0,
+      width:0
+    }
+    console.log(tree)
+
+    for (var i = tree.treeLength; i >= 0; i--) {
+      var t = 1;
+      if (i % 2 == 0) {
+        t = -1;
+      }
+      $('#tree').append(getBranch(tree.top, tree.width, t));
+      tree.top -= 20;
+      tree.width += 5;
+      console.log(tree.top);
+    }
+
+    function getBranch (top, left, t) {
+      return $('<div class="branch"></div>').css('top', top + 'px').css('border-left', left + 'px solid transparent').css('border-right', left + 'px solid transparent').css(
+      'transform', 'rotate(' + t + 'deg');
+    }
+
+  </script>
+
+</html>
