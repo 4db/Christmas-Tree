@@ -47,7 +47,7 @@
 
 	$(function() {
 		for(var i = 0; i < 10; i++) {
-			var toy = '<i class="fa-2x ' + toys[Math.floor(Math.random()*toys.length)] +'"></i>';
+			var toy = '<i class="toys fa-2x ' + toys[Math.floor(Math.random()*toys.length)] +'"></i>';
 			$('#toys').append(toy);
 		}
 
@@ -55,14 +55,43 @@
 			this.style.color = getRandomColor();
 		});
 
-		$( ".fa" ).draggable();
+		$( ".fa" ).draggable({
+		   revert : function(event, ui) {
+            // on older version of jQuery use "draggable"
+            // $(this).data("draggable")
+            // on 2.x versions of jQuery use "ui-draggable"
+            // $(this).data("ui-draggable")
+            $(this).data("uiDraggable").originalPosition = {
+                top : 0,
+                left : 0
+            };
+            // return boolean
+            return !event;
+            // that evaluate like this:
+            // return event !== false ? false : true;
+        }
+    });
 		$( ".branch" ).droppable({
+			accept: ".toys",
 			drop: function( event, ui ) {
 				ui.draggable({ disabled: true });
 				//addClass('fa-spin');
 			}
 		});
-		//trunk
+		$( ".trunk" ).droppable({
+			accept: ".fa-gift",
+			drop: function( event, ui ) {
+				ui.draggable({ disabled: true });
+				//addClass('fa-spin');
+			}
+		});
+		$( ".branch-head" ).droppable({
+			accept: ".fa-star",
+			drop: function( event, ui ) {
+				ui.draggable({ disabled: true });
+				//addClass('fa-spin');
+			}
+		});
 	});
 	function getRandomColor() {
 		var letters = '0123456789ABCDEF'.split('');
@@ -76,6 +105,7 @@
 </head>
 <body onload="">
 <div id='tree' class="tree">
+	<div class="branch branch-head"></div>
 	<div class="branch"></div>
 	<div class="branch"></div>
 	<div class="branch"></div>
@@ -110,7 +140,7 @@
 	<div class="branch"></div>
 	<div class="branch"></div>
 	<div class="branch"></div>
-	<div class="branch"></div>
+
 
 	<div class="trunk"></div>
 </div>
