@@ -52,7 +52,11 @@
 
 	$(function() {
 		for(var i = 0; i < 10; i++) {
+<<<<<<< HEAD
 			var toy = '<i class="toys fa-2x dropped ' + toys[Math.floor(Math.random()*toys.length)] +'"></i>';
+=======
+			var toy = '<i class="toys fa-2x ' + toys[Math.floor(Math.random()*toys.length)] +'"></i>';
+>>>>>>> 8ce7c11b1fff7444c1c7f5a3b0183551ba00733d
 			$('#toys').append(toy);
 		}
 
@@ -61,6 +65,7 @@
 		});
 
 		$( ".fa" ).draggable({
+<<<<<<< HEAD
 			revert : function(event, ui) {
 				// on older version of jQuery use "draggable"
 				// $(this).data("draggable")
@@ -82,15 +87,48 @@
 				$(ui.helper[0]).addClass("fa-spin");
 				$(ui.helper[0]).removeClass('dropped');
 				ui.draggable({ disabled: true });
+=======
+		   revert : function(event, ui) {
+            // on older version of jQuery use "draggable"
+            // $(this).data("draggable")
+            // on 2.x versions of jQuery use "ui-draggable"
+            // $(this).data("ui-draggable")
+            $(this).data("uiDraggable").originalPosition = {
+                top : 0,
+                left : 0
+            };
+            // return boolean
+            return !event;
+            // that evaluate like this:
+            // return event !== false ? false : true;
+        }
+    });
+		$( ".branch" ).droppable({
+			accept: ".toys",
+			drop: function( event, ui ) {
+				ui.draggable({ disabled: true });
+				//addClass('fa-spin');
+>>>>>>> 8ce7c11b1fff7444c1c7f5a3b0183551ba00733d
 			}
 		});
 		$( ".trunk" ).droppable({
 			accept: ".fa-gift",
+<<<<<<< HEAD
+=======
+			drop: function( event, ui ) {
+				ui.draggable({ disabled: true });
+				//addClass('fa-spin');
+			}
+		});
+		$( ".branch-head" ).droppable({
+			accept: ".fa-star",
+>>>>>>> 8ce7c11b1fff7444c1c7f5a3b0183551ba00733d
 			drop: function( event, ui ) {
 				$(ui.helper[0]).removeClass('dropped');
 				ui.draggable({ disabled: true });
 			}
 		});
+<<<<<<< HEAD
 		$( ".branch-head" ).droppable({
 			accept: ".fa-star",
 			drop: function( event, ui ) {
@@ -119,6 +157,8 @@
 				$( "#santa" ).show( "slow" );
 			}
 		}, 1000);
+=======
+>>>>>>> 8ce7c11b1fff7444c1c7f5a3b0183551ba00733d
 	});
 
 	function getRandomColor() {
@@ -143,6 +183,10 @@
 
 <div id='tree' class="tree">
 	<div class="branch branch-head"></div>
+<<<<<<< HEAD
+=======
+	<div class="branch"></div>
+>>>>>>> 8ce7c11b1fff7444c1c7f5a3b0183551ba00733d
 	<div class="branch"></div>
 	<div class="branch"></div>
 	<div class="branch"></div>
@@ -176,7 +220,7 @@
 	<div class="branch"></div>
 	<div class="branch"></div>
 	<div class="branch"></div>
-	<div class="branch"></div>
+
 
 
 <div class="trunk"></div>
