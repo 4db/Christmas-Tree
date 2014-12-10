@@ -9,6 +9,11 @@
 	<script src="js/jquery-1.10.2.js"></script>
 	<script src="js/jquery-ui.js"></script>
 
+	<style type="text/css">
+
+
+	</style>
+
 	<script>
 	var toys = [
 		'fa fa-angellist',
@@ -47,7 +52,7 @@
 
 	$(function() {
 		for(var i = 0; i < 10; i++) {
-			var toy = '<i class="toys fa-2x ' + toys[Math.floor(Math.random()*toys.length)] +'"></i>';
+			var toy = '<i class="toys fa-2x dropped ' + toys[Math.floor(Math.random()*toys.length)] +'"></i>';
 			$('#toys').append(toy);
 		}
 
@@ -56,43 +61,66 @@
 		});
 
 		$( ".fa" ).draggable({
-		   revert : function(event, ui) {
-            // on older version of jQuery use "draggable"
-            // $(this).data("draggable")
-            // on 2.x versions of jQuery use "ui-draggable"
-            // $(this).data("ui-draggable")
-            $(this).data("uiDraggable").originalPosition = {
-                top : 0,
-                left : 0
-            };
-            // return boolean
-            return !event;
-            // that evaluate like this:
-            // return event !== false ? false : true;
-        }
-    });
+			revert : function(event, ui) {
+				// on older version of jQuery use "draggable"
+				// $(this).data("draggable")
+				// on 2.x versions of jQuery use "ui-draggable"
+				// $(this).data("ui-draggable")
+				$(this).data("uiDraggable").originalPosition = {
+					top : 0,
+					left : 0
+				};
+				// return boolean
+				return !event;
+				// that evaluate like this:
+				// return event !== false ? false : true;
+				}
+		});
 		$( ".branch" ).droppable({
 			accept: ".toys",
 			drop: function( event, ui ) {
+				$(ui.helper[0]).addClass("fa-spin");
+				$(ui.helper[0]).removeClass('dropped');
 				ui.draggable({ disabled: true });
-				//addClass('fa-spin');
 			}
 		});
 		$( ".trunk" ).droppable({
 			accept: ".fa-gift",
 			drop: function( event, ui ) {
+				$(ui.helper[0]).removeClass('dropped');
 				ui.draggable({ disabled: true });
-				//addClass('fa-spin');
 			}
 		});
 		$( ".branch-head" ).droppable({
 			accept: ".fa-star",
 			drop: function( event, ui ) {
+				starColor = $('#star').css('color');
+				$('#star').css('-webkit-transition','1s');
+				$('#star').removeClass('dropped');
 				ui.draggable({ disabled: true });
-				//addClass('fa-spin');
 			}
 		});
+
+		var starColor = undefined;
+		var finish = false;
+
+		setInterval(function(){
+			if (starColor !== undefined) {
+				if ($('#star').css('color') == 'rgb(255, 215, 0)') {
+					$('#star').css('color', starColor);
+				}
+				else {
+					$('#star').css('color', 'rgb(255, 215, 0)');
+				}
+			}
+
+			if ($('.dropped').length === 0 && finish === false) {
+				finish = true;
+				$( "#santa" ).show( "slow" );
+			}
+		}, 1000);
 	});
+
 	function getRandomColor() {
 		var letters = '0123456789ABCDEF'.split('');
 		var color = '#';
@@ -101,9 +129,18 @@
 		}
 		return color;
 	}
+
 	</script>
 </head>
-<body onload="">
+<body>
+
+<div id="santa" style="display:none;">
+	<div id="cap"></div>
+	<div id="beard"></div>
+	<div id="face"></div>
+	<div id="stomach"></div>
+</div>
+
 <div id='tree' class="tree">
 	<div class="branch branch-head"></div>
 	<div class="branch"></div>
@@ -142,17 +179,43 @@
 	<div class="branch"></div>
 
 
-	<div class="trunk"></div>
+<div class="trunk"></div>
+</div>
+<div class="land">
+	<div class="center-land">
+		<i class="fa fa-star fa-4x dropped" id='star'></i>
+		<i class="fa fa-gift fa-4x dropped"></i>
+		<i class="fa fa-gift fa-4x dropped"></i>
+		<i class="fa fa-gift fa-4x dropped"></i>
+		<div id="toys"></div>
 </div>
 
-<div>
-	<i class="fa fa-star fa-4x" style="color: yellow"></i>
-	<i class="fa fa-gift fa-4x"></i>
-	<i class="fa fa-gift fa-4x"></i>
-	<i class="fa fa-gift fa-4x"></i>
-	<div id="toys">
-
-	</div>
+<div class="snowfall">
+	<div class="snow"></div>
 </div>
+<div class="snowfall"></div>
+<div class="snowfall"></div>
+<div class="snowfall">
+	<div class="snow"></div>
+</div>
+<div class="snowfall"></div>
+<div class="snowfall"></div>
+<div class="snowfall">
+	<div class="snow"></div>
+</div>
+<div class="snowfall"></div>
+<div class="snowfall"></div>
+<div class="snowfall">
+	<div class="snow"></div>
+</div>
+<div class="snowfall"></div>
+<div class="snowfall"></div>
+<div class="snowfall">
+	<div class="snow"></div>
+</div>
+<div class="snowfall"></div>
+<div class="snowfall"></div>
+</div>
+
 </body>
 </html>

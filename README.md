@@ -4,9 +4,12 @@ Christmas-Tree
 Christmas Tree
 
 todo:
--css Christmas Tree 
--css gift
--drag&drop
--add light
--final animation/light/music/
--santa?
+<ul>
+
+<li>css Christmas Tree </li>
+<li>css gift</li>
+<li>drag&drop</li>
+<li>add light</li>
+<li>final animation/light/music/</li>
+<li>finish stuff</li>
+</ul>
