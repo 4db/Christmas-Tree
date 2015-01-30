@@ -112,13 +112,13 @@
 		var starColor = undefined;
 		var finish = false;
 
+		var $star = $('#star');
+
 		setInterval(function(){
 			if (starColor !== undefined) {
-				if ($('#star').css('color') == 'rgb(255, 215, 0)') {
-					$('#star').css('color', starColor);
-				}
-				else {
-					$('#star').css('color', 'rgb(255, 215, 0)');
+				$star.css('color', 'rgb(255, 215, 0)');
+				if ($star.css('color') == 'rgb(255, 215, 0)') {
+					$star.css('color', starColor);
 				}
 			}
 
