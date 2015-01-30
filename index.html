@@ -48,9 +48,17 @@
 		'fa fa-star-o',
 		'fa fa-tree',
 		'fa fa-umbrella',
-	]
+	];
 
 	$(function() {
+		var autoSong = document.getElementById("autoSong");
+		autoSong.play();
+
+		autoSong.addEventListener('ended', function(){
+			this.currentTime = 0;
+			this.play();
+		}, false);
+
 		for(var i = 0; i < 10; i++) {
 			var toy = '<i class="toys fa-2x dropped ' + toys[Math.floor(Math.random()*toys.length)] +'"></i>';
 			$('#toys').append(toy);
@@ -117,6 +125,8 @@
 			if ($('.dropped').length === 0 && finish === false) {
 				finish = true;
 				$( "#santa" ).show( "slow" );
+				document.getElementById("autoSong").pause();
+				document.getElementById('song').play();
 			}
 		}, 1000);
 	});
@@ -133,7 +143,6 @@
 	</script>
 </head>
 <body>
-
 <div id="santa" style="display:none;">
 	<div id="cap"></div>
 	<div id="beard"></div>
@@ -217,5 +226,13 @@
 <div class="snowfall"></div>
 </div>
 
+<audio controls style="display: none;" id="autoSong">
+	<source src="audio/Jingle benz.mp3" type="audio/ogg">
+	Your browser does not support the audio element.
+</audio>
+<audio controls style="display: none;" id="song">
+	<source src="audio/Christmas Song - Santa Claus Is Coming To Town.mp3" type="audio/ogg">
+	Your browser does not support the audio element.
+</audio>
 </body>
 </html>
